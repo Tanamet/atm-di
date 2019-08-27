@@ -1,4 +1,4 @@
-package th.ku;
+package th.ku.cashregister;
 
 public class CashRegister {
     private double purchase;

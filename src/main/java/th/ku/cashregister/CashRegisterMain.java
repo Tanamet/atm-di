@@ -1,4 +1,4 @@
-package th.ku;
+package th.ku.cashregister;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

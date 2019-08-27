@@ -1,4 +1,4 @@
-package th.ku;
+package th.ku.cashregister;
 
 public class NYTaxCalculator implements TaxCalculator {
     public double calculate(double amount) {

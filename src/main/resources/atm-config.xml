@@ -5,18 +5,21 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="CATax" class="th.ku.cashregister.CATaxCalculator"/>
-    <bean id="NYTax" class="th.ku.cashregister.NYTaxCalculator"/>
-    <bean id="register" class="th.ku.cashregister.CashRegister">
+    <bean id="dataSource" class="th.ku.DataSource" >
+        <constructor-arg name="filename" type="String" value="customers.txt" />
+    </bean>
 
-        <!--        <constructor-arg name="location" type="String" value="CA" />-->
-        <!--        <constructor-arg name="taxCal" ref="CATax"/>-->
+    <bean id="bank" class="th.ku.Bank">
+        <constructor-arg name="dataSource" ref="dataSource" />
+    </bean>
 
-        <property name="location" >
-            <value>CA</value>
-        </property>
+    <bean id="atm" class="th.ku.ATM" >
+        <constructor-arg name="bank" ref="bank" />
+    </bean>
 
-        <property name="taxCal" ref="CATax" />
+    <bean id="atmSimulator" class="th.ku.ATMSimulator">
+
+        <constructor-arg name="atm" ref="atm" />
 
     </bean>
 

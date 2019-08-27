@@ -10,7 +10,7 @@ class CashRegisterMain {
         ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
         CashRegister register = context.getBean("register", CashRegister.class);
 
-        register.recordPurchase(25);
+        register.recordPurchase(100);
         System.out.println(register.getTotal());
 
     }

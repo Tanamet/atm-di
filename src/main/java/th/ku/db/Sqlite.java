@@ -1,8 +1,6 @@
 package th.ku.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Sqlite {
 
@@ -15,13 +13,35 @@ public class Sqlite {
 
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:" + table + ".sqlite");
-            System.out.println("connected");
-            c.close();
 
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
+    }
+
+    public ResultSet execute(String query){
+
+        try{
+
+            this.stmt = c.createStatement();
+            ResultSet re = stmt.executeQuery(query);
+            return re;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+    public void closeConnection(){
+        try {
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

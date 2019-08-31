@@ -4,6 +4,7 @@ import config.JavaConfig;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import th.ku.db.Sqlite;
 
 public class Main {
 
@@ -19,7 +20,9 @@ public class Main {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
         ATMSimulator atmSimulator = context.getBean(ATMSimulator.class);
 
-        atmSimulator.run();
+        Sqlite db = new Sqlite("atm");
+
+//        atmSimulator.run();
 
     }
 

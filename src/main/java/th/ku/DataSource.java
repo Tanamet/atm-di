@@ -1,14 +1,21 @@
 package th.ku;
 
+import org.springframework.stereotype.Component;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+@Component
 public class DataSource {
 
     private String filename;
+
+    public DataSource() {
+        filename = "customers.txt";
+    }
 
     /**
      * @param filename the name of the customer file

@@ -1,5 +1,8 @@
 package th.ku;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +10,7 @@ import java.util.Map;
 /**
  * A bank contains customers with bank accounts.
  */
+@Component
 public class Bank {
 
    private Map<Integer,Customer> customers;
@@ -15,6 +19,7 @@ public class Bank {
    /**
     * Constructs a bank with no customers.
     */
+   @Autowired
    public Bank(DataSource dataSource) {
       this.dataSource = dataSource;
       customers = new HashMap<Integer,Customer>();

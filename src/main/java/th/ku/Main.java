@@ -13,8 +13,8 @@ public class Main {
 //        ATMSimulator atmSimulator = new ATMSimulator(atm);
 //        atmSimulator.run();
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("atm-config.xml");
-        ATMSimulator atmSimulator = context.getBean("atmSimulator", ATMSimulator.class);
+        ApplicationContext context = new ClassPathXmlApplicationContext("annotation-config.xml");
+        ATMSimulator atmSimulator = context.getBean(ATMSimulator.class);
 
         atmSimulator.run();
 

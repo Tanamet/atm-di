@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * An ATM that accesses a bank.
@@ -30,7 +31,7 @@ public class ATM {
 		this.state = START;
 	}
 
-	public void init() throws IOException {
+	public void init() throws IOException, SQLException {
 		bank.initializeCustomers();
 	}
 

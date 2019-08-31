@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class Bank {
       customers = new HashMap<Integer,Customer>();
    }
 
-   public void initializeCustomers() throws IOException {
+   public void initializeCustomers() throws IOException, SQLException {
       customers = dataSource.readCustomers();
    }
    /**

@@ -1,6 +1,8 @@
 package th.ku;
 
+import config.JavaConfig;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
@@ -13,7 +15,8 @@ public class Main {
 //        ATMSimulator atmSimulator = new ATMSimulator(atm);
 //        atmSimulator.run();
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("annotation-config.xml");
+//        ApplicationContext context = new ClassPathXmlApplicationContext("annotation-config.xml");
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
         ATMSimulator atmSimulator = context.getBean(ATMSimulator.class);
 
         atmSimulator.run();

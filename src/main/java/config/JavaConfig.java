@@ -6,13 +6,16 @@ import th.ku.ATM;
 import th.ku.ATMSimulator;
 import th.ku.Bank;
 import th.ku.DataSource;
+import th.ku.db.CustomerDao;
+import th.ku.db.Sqlite;
 
 @Configuration
 public class JavaConfig {
 
     @Bean
     public DataSource dataSource(){
-        return new DataSource("customers.txt");
+//        return new DataSource("customers.txt");
+        return new DataSource(new CustomerDao(new Sqlite("atm")));
     }
 
     @Bean

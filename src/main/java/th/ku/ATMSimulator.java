@@ -1,15 +1,21 @@
 package th.ku;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
    A text-based simulation of an automatic teller machine.
  */
+@Component
 public class ATMSimulator {
 
 	private ATM atm;
 
+	@Autowired
 	public ATMSimulator(ATM atm) {
 		this.atm = atm;
 	}
@@ -21,6 +27,8 @@ public class ATMSimulator {
 		catch(IOException e) {
 			System.out.println("Error reading account data.");
 			return;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 		Scanner in = new Scanner(System.in);

@@ -1,10 +1,15 @@
 package th.ku;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * An ATM that accesses a bank.
  */
+@Component
 public class ATM {
 	public static final int START = 1;
 	public static final int TRANSACT = 2;
@@ -18,6 +23,7 @@ public class ATM {
 	/**
      * Constructs an ATM for a bank.
 	 */
+	@Autowired
 	public ATM(Bank bank) {
 		this.bank = bank;
 		this.customerNumber = -1;
@@ -25,7 +31,7 @@ public class ATM {
 		this.state = START;
 	}
 
-	public void init() throws IOException {
+	public void init() throws IOException, SQLException {
 		bank.initializeCustomers();
 	}
 

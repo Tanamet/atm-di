@@ -20,9 +20,7 @@ public class Main {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
         ATMSimulator atmSimulator = context.getBean(ATMSimulator.class);
 
-        Sqlite db = new Sqlite("atm");
-
-//        atmSimulator.run();
+        atmSimulator.run();
 
     }
 

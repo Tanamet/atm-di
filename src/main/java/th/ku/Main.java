@@ -17,7 +17,8 @@ public class Main {
 //        atmSimulator.run();
 
 //        ApplicationContext context = new ClassPathXmlApplicationContext("annotation-config.xml");
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
+        ApplicationContext context = new ClassPathXmlApplicationContext("atm-config.xml");
+//        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
         ATMSimulator atmSimulator = context.getBean(ATMSimulator.class);
 
         atmSimulator.run();

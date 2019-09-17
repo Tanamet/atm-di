@@ -1,17 +1,20 @@
 package th.ku.db;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import th.ku.Customer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CustomerDao implements Source {
 
-    private Sqlite db;
+    private JdbcTemplate db;
 
-    public CustomerDao(Sqlite db){
+    public CustomerDao(JdbcTemplate db){
 
         this.db = db;
 
@@ -22,16 +25,9 @@ public class CustomerDao implements Source {
         Map<Integer, Customer> customers = new HashMap<Integer, Customer>();
         String query = "SELECT * FROM customers";
 
-        ResultSet rs = this.db.execute(query);
-        while (rs.next()) {
-
-            int id = rs.getInt("id");
-            int pin = rs.getInt("pin");
-            double balance = rs.getDouble("balance");
-
-            Customer c = new Customer(id, pin, balance);
+        List<Customer> list_customers = db.query(query, new CustomerMapper());
+        for (Customer c: list_customers) {
             customers.put(c.getCustomerNumber(), c);
-
         }
 
         return customers;
@@ -39,10 +35,16 @@ public class CustomerDao implements Source {
 
     }
 
-    protected void finalize(){
+    class CustomerMapper implements RowMapper<Customer> {
+        public Customer mapRow(ResultSet rs, int rowNum)
+                throws SQLException {
+            int id = rs.getInt("id");
+            int pin = rs.getInt("pin");
+            double balance = rs.getDouble("balance");
 
-        this.db.closeConnection();
-
+            Customer c = new Customer(id, pin, balance);
+            return c;
+        }
     }
 
 }
